@@ -1,0 +1,221 @@
+<resources>
+    <string name="app_name">NSPSI</string>
+    <string name="title_activity_home">homeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logout">Logout</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password">Password</string>
+    <string name="email_address">email address</string>
+    <string name="email_address_signup">Email Address</string>
+    <string name="mobile_no2">mobile no2</string>
+    <string name="confirm_mobile_no">Confirm Mobile No</string>
+    <string name="mobile_no1">mobile no1</string>
+    <string name="mobile_no">Mobile No</string>
+    <string name="full_names">full names</string>
+    <string name="full_names_here">Full Names</string>
+    <string name="admn_no_id">admn no/ID</string>
+    <string name="adm_no_or_staff_no_or_id">Adm No or Staff No or ID</string>
+    <string name="usertype">Usertype</string>
+    <string name="registry">Registry</string>
+    <string name="my_list">My List</string>
+    <string name="about_nspsi">About NSPSI</string>
+
+    <string-array name="gender_array">
+        <item>-Gender-</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="yearof_join">
+        <item>Year</item>
+        <item>2027</item>
+        <item>2026</item>
+        <item>2025</item>
+        <item>2024</item>
+        <item>2023</item>
+        <item>2022</item>
+        <item>2021</item>
+        <item>2020</item>
+        <item>2019</item>
+    </string-array>
+
+    <string-array name="course_level">
+        <item>-Level-</item>
+        <item>Proficiency</item>
+        <item>Artisan</item>
+        <item>Craft Certificate</item>
+        <item>Certificate</item>
+        <item>Diploma</item>
+        <item>Higher N.Diploma</item>
+    </string-array>
+    <string-array name="grades">
+        <item>-Grade-</item>
+        <item>A </item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B </item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>C+</item>
+        <item>C</item>
+        <item>C-</item>
+        <item>D+</item>
+        <item>D</item>
+        <item>D-</item>
+        <item>E</item>
+        <item>KCPE </item>
+    </string-array>
+
+    <string-array name="counties">
+        <item>-County-</item>
+        <item>01 Mombasa </item>
+        <item>02 Kwale </item>
+        <item> 03 Kilifi </item>
+        <item> 04 Tana River </item>
+        <item>05 Lamu </item>
+        <item> 06 T.Taveta </item>
+        <item> 07 Garissa </item>
+        <item>8 Wajir </item>
+        <item>9 Mandera </item>
+        <item>10 Marsabit </item>
+        <item> 11 Isiolo </item>
+        <item> 12 Meru </item>
+        <item> 13 T.Nithi </item>
+        <item>14 Embu </item>
+        <item> 15 Kitui </item>
+        <item> 16 Machakos </item>
+        <item> 17 Makueni </item>
+        <item> 18 Nyandarua </item>
+        <item> 19 Nyeri </item>
+        <item>20 Kirinyaga </item>
+        <item> 21 Murang’a </item>
+        <item> 22 Kiambu </item>
+        <item> 23 Turkana </item>
+        <item> 24 West Pokot </item>
+        <item>25 Samburu </item>
+        <item> 26 U.Gishu </item>
+        <item> 27 Trans-Nzoia </item>
+        <item> 28 E.Marakwet </item>
+        <item> 29 Nandi  </item>
+        <item>30 Baringo </item>
+        <item>31 Laikipia </item>
+        <item>32 Nakuru </item>
+        <item> 33 Narok </item>
+        <item>34 Kajiado </item>
+        <item> 35 Kericho </item>
+        <item> 36 Bomet </item>
+        <item>37 Kakamega </item>
+        <item>38 Vihiga </item>
+        <item> 39 Bungoma </item>
+        <item>40 Busia </item>
+        <item> 41 Siaya </item>
+        <item> 42 Kisumu </item>
+        <item> 43 Homa Bay </item>
+        <item> 44 Migori</item>
+        <item> 45 Kisii </item>
+        <item>46 Nyamira </item>
+        <item>47 Nairobi </item>
+    </string-array>
+    <string-array name="kcse_yr">
+        <item>-KCSE Yr-</item>
+        <item>2027</item>
+        <item>2026</item>
+        <item>2025</item>
+        <item>2024</item>
+        <item>2023</item>
+        <item>2022</item>
+        <item>2021</item>
+        <item>2020</item>
+        <item>2019</item>
+        <item>2018</item>
+        <item>2017</item>
+        <item>2016</item>
+        <item>2015</item>
+        <item>2014</item>
+        <item>2013</item>
+        <item>2012</item>
+        <item>2011</item>
+        <item>2010</item>
+        <item>2009</item>
+        <item>2008</item>
+        <item>2007</item>
+        <item>2006</item>
+        <item>2005</item>
+        <item>2004</item>
+        <item>2003</item>
+        <item>2002</item>
+        <item>2001</item>
+        <item>2000</item>
+    </string-array>
+
+
+    <string name="h1">NSPIS Outreach App\n Version 1.0 ©2019 \n \n PREREQUISITES</string>
+    <string name="content1">To use this app, you need an internet connection. This can be mobile data connection or WIFI. It works with minimal connection i.e 2g.
+The explanations and steps are done in English language only.</string>
+    <string name="h2">SECTIONS</string>
+    <string name="content2">Login- If already registered, you key in your email and password, then proceed. \n
+Registry- Proceed to key in the details of the prospective student then submit. \n
+Sigh Up- If new to using this app, you supply your details for once then go a head to make referrals. \n
+My list- The section showing the list of students a user has referred or reached and supplied their details to us via this app.</string>
+    <string name="h3">USERS</string>
+    <string name="content3">The users shall include: \n
+1.Staff \n
+2.Student\n
+3.Guest \n
+Explanation:\n
+1.The staff Users shall include the college staff members, with staff Numbers as their registration IDs in this app.\n
+2. The Student Users shall include our
+current students,studying at the college, who shall use student admission number to register and use this app. This is very important as will be used during rewards times.\n
+3.The Guest Users shall include all citizens of goodwill who would wish to positively tell our story and encourage students to study at our college. They shall use National ID/Passport/Military ID for identification purpose.</string>
+    <string name="h4">DOs</string>
+    <string name="content4">This App aims at expanding the outreach to individuals, communities and groups who in one way or another believe in education as a tool to empower and prepare the current generation for the future by equiping them with the skills and know-how for them to face the challenges of the 21st century and emerge successfully, changing their communities positively.
+However, this App is not an education based app. It is simply a bridge to reaching more prospective students so they be engaged with us, mentored, told of the potential careers paths and hence may come study at NSPSI college in line with their career choices.</string>
+    <string name="h5">WHY THIS APP?</string>
+    <string name="content5">By registering a prospective student via this App, you are serving a very wonderful purpose in allowing us to reach that student. We promise to tell them about our college and more so, why he or she should come study with us, through the live changing careers in the courses that we offer.
+Our story is long, especially while trying to efficiently reach our prospective students with ease and timeliness. We appreciate the birth of this app as it has easened the above challenge. We can now proudly say goodbye to the famous Referral forms!It is a time of no pen, no paper to make a referral!Imagine with your
+        mobile phone, you can make referrals anywhere, anytime at your own comfort. What a step!\n
+        After making the referral, please leave the rest to us! Do not forget this again; you will always view your list, right on time.</string>
+    <string name="h6">PRIVACY POLICY</string>
+    <string name="content6">This App would not be complete without mentioning this section.The data collected, recorded and transmitted via this App shall be used solely to reach potential students and reward or appreciate referees from time to time as may so be determined by the college administration.
+Any suspected breach of this policy shall be reported immediately via the contacts provided below or any other channel of communication with the college management. We promise to act with immediate effect, just in case it happens.Otherwise, the user-data shall remain of value to us, very confidential and only serve the purpose of linking us and the referees.</string>
+    <string name="h7">REWARDS</string>
+    <string name="content7">At the time of first release of this app, the Student Users of this app had been granted a reward of 1000 shillings in form of fee waiver for every successful reference.
+Plans are underway to give a token to other users  staff, alumni and guest users.</string>
+    <string name="h8">CAUTION</string>
+    <string name="content8">It is always expected that a user will always supply real data. Real data to mean correct information of a prospective student, bearing in mind that all students referred (whose details are supplied by users via this app), will be reached by the college administration via phone call or email. It is therefore strictly advised
+        that users should supply true data, as we will always know a dishonest user.</string>
+    <string name="reachus">
+Powered by: \nAfixus Solutions Ltd.\nwww.afixus.co.ke \n afixus.it@gmail.com
+    </string>
+    <string name="submit">Submit</string>
+    <string name="course_level">Course Level</string>
+    <string name="intake">Intake</string>
+    <string name="intake_yr">Intake Yr.</string>
+    <string name="home_county">Home County</string>
+    <string name="target_course">Target Course</string>
+    <string name="kcse_grade">KCSE Grade</string>
+    <string name="confirm_phoneno">Confirm PhoneNo.</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="gender">Gender</string>
+    <string name="phone_number">Phone Number.</string>
+    <string name="nishkam_saint_puran_singh_institiute"> Nishkam Saint Puran Singh Institiute</string>
+    <string name="nspsi">NSPSI</string>
+
+</resources>

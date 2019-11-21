@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "300728165357",
+    "firebase_url": "https://nspsi-2a6f0.firebaseio.com",
+    "project_id": "nspsi-2a6f0",
+    "storage_bucket": "nspsi-2a6f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300728165357:android:9a11a90eee98be2cb93de4",
+        "android_client_info": {
+          "package_name": "ke.co.afixus.nspsi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300728165357-h6s6qvpm7rjvpji7dur7i0c65m5h32p5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ke.co.afixus.nspsi",
+            "certificate_hash": "b36ace987519b1aed09f6d44991d561a853f0fb4"
+          }
+        },
+        {
+          "client_id": "300728165357-c6oj1u389baeqdsf0gh92d26r4jqga9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWWczqo5O7Iduh2aa7y_feWr6_-b0FBUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300728165357-c6oj1u389baeqdsf0gh92d26r4jqga9a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
