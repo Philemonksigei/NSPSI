@@ -161,20 +161,16 @@ public class adduserActivity extends AppCompatActivity {
                                 {
                                     if( muser.equals("Student"))
                                     {
-                                        databaseReference = firebaseDatabase.getReference("Users").child("StudentUsers")
-
-
-
-
+                                        databaseReference = firebaseDatabase.getReference("Users").child(mstdadmno)
                                     ;
                                     }
                                     if(muser.equals("Staff"))
                                     {
-                                        databaseReference = firebaseDatabase.getReference("Users").child("StaffUsers");
+                                        databaseReference = firebaseDatabase.getReference("Users").child(mstdadmno);
                                     }
                                     if(muser.equals("Guest"))
                                     {
-                                        databaseReference = firebaseDatabase.getReference("Users").child("GuestUsers");
+                                        databaseReference = firebaseDatabase.getReference("Users").child(mstdadmno);
                                     }
 
                                     String id = databaseReference.push().getKey();
