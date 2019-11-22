@@ -161,16 +161,16 @@ public class adduserActivity extends AppCompatActivity {
                                 {
                                     if( muser.equals("Student"))
                                     {
-                                        databaseReference = firebaseDatabase.getReference("Users").child(mstdadmno)
+                                        databaseReference = firebaseDatabase.getReference(mFirebaseAuth.getUid()).child("StudentUsers")
                                     ;
                                     }
                                     if(muser.equals("Staff"))
                                     {
-                                        databaseReference = firebaseDatabase.getReference("Users").child(mstdadmno);
+                                        databaseReference = firebaseDatabase.getReference(mFirebaseAuth.getUid()).child("Staff");
                                     }
                                     if(muser.equals("Guest"))
                                     {
-                                        databaseReference = firebaseDatabase.getReference("Users").child(mstdadmno);
+                                        databaseReference = firebaseDatabase.getReference(mFirebaseAuth.getUid()).child("Guest");
                                     }
 
                                     String id = databaseReference.push().getKey();
@@ -184,22 +184,22 @@ public class adduserActivity extends AppCompatActivity {
                                     databaseReference.child(id).setValue(student_staff);
                                     databaseReference.child(id).setValue(student_staff);
 
+                                    mFirebaseAuth.signOut();
+
                                     Toast.makeText(adduserActivity.this, "SUCCESSSSSS!", Toast.LENGTH_SHORT).show();
                                     Intent i = new Intent(getApplicationContext(), loginActivity.class);
                                     startActivity(i);
+
+                                    finish();
                                 }
                                 else {
                                     Toast.makeText(adduserActivity.this, "Sorry! Could not Create user.\n Please Try again!!", Toast.LENGTH_SHORT).show();
-
                                     }
-
                             }
                         });
-
             }
             else if (!haveNetwork())
             {
-
                 Toast.makeText(this, "No Network!! Sorry!", Toast.LENGTH_SHORT).show();
             }
         }

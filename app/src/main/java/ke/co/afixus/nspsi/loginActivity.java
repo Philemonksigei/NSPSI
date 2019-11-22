@@ -103,7 +103,7 @@ public class loginActivity extends AppCompatActivity {
                                             pb.setVisibility(View.GONE);
                                             mEmail.setText("");
                                             mPassword.setText("");
-
+                                           finish();
                                         }
                                         else
                                         {

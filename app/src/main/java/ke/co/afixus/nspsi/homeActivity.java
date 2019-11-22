@@ -87,6 +87,7 @@ public class homeActivity extends AppCompatActivity
         {
             Intent i = new Intent(getApplicationContext(),loginActivity.class);
             startActivity(i);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

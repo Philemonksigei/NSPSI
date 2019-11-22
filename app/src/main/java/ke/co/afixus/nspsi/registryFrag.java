@@ -48,28 +48,25 @@ public class registryFrag extends Fragment
      Spinner refyrofjoining;
      Spinner refcounty;
      Button submitbuttton;
-     TextView showcurrent_user;
      //DatePicker datePicker;
 
 
-    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    FirebaseDatabase firebaseDatabase;
+    //= FirebaseDatabase.getInstance();
     DatabaseReference databaseReference;
     FirebaseAuth mFirebaseAuth;
+
+    private   TextView currentusersname;
+    private   TextView currentusersemail;
+
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState)
         {
-           // final String usersname;
-           // final String usersemail;
-          //  final String usertypetxt;
-
-
             // Inflate the layout for this fragment
            View view = inflater.inflate(R.layout.fragment_registry, container, false);
 
-
-            showcurrent_user = view.findViewById(R.id.curentusertxt);
             refstdname = (EditText) view.findViewById(R.id.stdname);
             refgenderselect = view.findViewById(R.id.genderspinner);
             refphoneno1 =  view.findViewById(R.id.phone1);
@@ -122,7 +119,30 @@ public class registryFrag extends Fragment
             adapteryrjoin.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
             refyrofjoining.setAdapter(adapteryrjoin);
 
+    //time to retrive
 
+   currentusersname = view.findViewById(R.id.curentusertxt);
+
+     mFirebaseAuth = FirebaseAuth.getInstance();
+     firebaseDatabase = FirebaseDatabase.getInstance();
+     DatabaseReference databaseReference = firebaseDatabase.getReference(mFirebaseAuth.getUid()).child("stdname");
+
+     databaseReference.addValueEventListener(new ValueEventListener()
+                 {
+                     @Override
+                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                     {
+                         Data.Student_staff  datausers = dataSnapshot.getValue(Data.Student_staff.class);
+
+
+                     }
+
+                     @Override
+                     public void onCancelled(@NonNull DatabaseError databaseError)
+                     {
+
+                     }
+                 });
 
 
      ///trying to retrieve the user info here
