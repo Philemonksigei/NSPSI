@@ -2,6 +2,8 @@ package ke.co.afixus.nspsi;
 
 public class Data {
 
+
+    //studentsatff trasfered here
     public static class Student_staff
     {
         String usertype;
@@ -11,7 +13,7 @@ public class Data {
         String phoneno1;
         String phoneno2;
         String email;
-        String  id;
+        // String  id;
 
         public void Student_staff(){
             //empty constructure gets inititated when data is loaded
@@ -65,22 +67,22 @@ public class Data {
             this.email = email;
         }
 
-        public String getId() {
-            return id;
-        }
+        //public String getId() {
+        //return id;
+        // }
 
         public void setId(String id) {
-            this.id = id;
+            // this.id = id;
         }
 
-        public Student_staff(String usertype, String admno_staffno, String stdname, String phoneno1, String phoneno2, String email, String id) {
+        public Student_staff(String usertype, String admno_staffno, String stdname, String phoneno1, String phoneno2, String email) {
             this.usertype = usertype;
             this.admno_staffno = admno_staffno;
             this.stdname = stdname;
             this.phoneno1 = phoneno1;
             this.phoneno2 = phoneno2;
             this.email = email;
-            this.id = id;
+            // this.id = id;
         }
     }
 

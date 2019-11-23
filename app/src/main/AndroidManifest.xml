@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/myicon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".adduserActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -33,6 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

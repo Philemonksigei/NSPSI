@@ -88,6 +88,7 @@ public class adduserActivity extends AppCompatActivity {
             });
     }
 
+
     public void signingUp()
     {
         final String muser = usertype.getSelectedItem().toString();
@@ -161,28 +162,31 @@ public class adduserActivity extends AppCompatActivity {
                                 {
                                     if( muser.equals("Student"))
                                     {
-                                        databaseReference = firebaseDatabase.getReference(mFirebaseAuth.getUid()).child("StudentUsers")
+                                        databaseReference = firebaseDatabase.getReference(mFirebaseAuth.getUid());
+                                        //.child("StudentUsers")
                                     ;
                                     }
                                     if(muser.equals("Staff"))
                                     {
-                                        databaseReference = firebaseDatabase.getReference(mFirebaseAuth.getUid()).child("Staff");
+                                        databaseReference = firebaseDatabase.getReference(mFirebaseAuth.getUid());
+                                        //.child("Staff");
                                     }
                                     if(muser.equals("Guest"))
                                     {
-                                        databaseReference = firebaseDatabase.getReference(mFirebaseAuth.getUid()).child("Guest");
+                                        databaseReference = firebaseDatabase.getReference(mFirebaseAuth.getUid());
+                                        //.child("Guest");
                                     }
 
-                                    String id = databaseReference.push().getKey();
+                                    //String id = databaseReference.push().getKey();
 
-                                    Data.Student_staff student_staff = new Data.Student_staff(muser,mstdadmno, mstdname, mstdphoneno1,mstdphoneno2, mstemail, id);
+                                    Data.Student_staff student_staff= new Data.Student_staff(muser,mstdadmno, mstdname, mstdphoneno1,mstdphoneno2, mstemail);
                                     //send to database
-                                    databaseReference.child(id).setValue(student_staff);
-                                    databaseReference.child(id).setValue(student_staff);
-                                    databaseReference.child(id).setValue(student_staff);
-                                    databaseReference.child(id).setValue(student_staff);
-                                    databaseReference.child(id).setValue(student_staff);
-                                    databaseReference.child(id).setValue(student_staff);
+                                    databaseReference.setValue(student_staff);
+                                    databaseReference.setValue(student_staff);
+                                    databaseReference.setValue(student_staff);
+                                    databaseReference.setValue(student_staff);
+                                    databaseReference.setValue(student_staff);
+                                    databaseReference.setValue(student_staff);
 
                                     mFirebaseAuth.signOut();
 

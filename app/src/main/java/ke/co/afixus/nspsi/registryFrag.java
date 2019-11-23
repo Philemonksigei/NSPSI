@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,13 +52,13 @@ public class registryFrag extends Fragment
      //DatePicker datePicker;
 
 
-    FirebaseDatabase firebaseDatabase;
-    //= FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference;
-    FirebaseAuth mFirebaseAuth;
+     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+     DatabaseReference databaseReference;
+     FirebaseAuth mFirebaseAuth;
 
-    private   TextView currentusersname;
-    private   TextView currentusersemail;
+     //TextViews for retrieval purposes only
+     TextView showuser;
+     //String uid;
 
 
         @Override
@@ -67,6 +68,26 @@ public class registryFrag extends Fragment
             // Inflate the layout for this fragment
            View view = inflater.inflate(R.layout.fragment_registry, container, false);
 
+            //retrieve user here
+            showuser = view.findViewById(R.id.curentusertxt);
+            mFirebaseAuth= FirebaseAuth.getInstance();
+            databaseReference = FirebaseDatabase.getInstance().getReference().child(mFirebaseAuth.getUid());
+            databaseReference.addValueEventListener(new ValueEventListener()
+                        {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                            {
+                                String name = dataSnapshot.child("stdname").getValue().toString();
+                                showuser.setText(name);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError)
+                            {
+                                Toast.makeText(getActivity(), "No such user!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+         //end of user retrieval
             refstdname = (EditText) view.findViewById(R.id.stdname);
             refgenderselect = view.findViewById(R.id.genderspinner);
             refphoneno1 =  view.findViewById(R.id.phone1);
@@ -119,69 +140,7 @@ public class registryFrag extends Fragment
             adapteryrjoin.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
             refyrofjoining.setAdapter(adapteryrjoin);
 
-    //time to retrive
 
-   currentusersname = view.findViewById(R.id.curentusertxt);
-
-     mFirebaseAuth = FirebaseAuth.getInstance();
-     firebaseDatabase = FirebaseDatabase.getInstance();
-     DatabaseReference databaseReference = firebaseDatabase.getReference(mFirebaseAuth.getUid()).child("stdname");
-
-     databaseReference.addValueEventListener(new ValueEventListener()
-                 {
-                     @Override
-                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                     {
-                         Data.Student_staff  datausers = dataSnapshot.getValue(Data.Student_staff.class);
-
-
-                     }
-
-                     @Override
-                     public void onCancelled(@NonNull DatabaseError databaseError)
-                     {
-
-                     }
-                 });
-
-
-     ///trying to retrieve the user info here
-       /*     DatabaseReference databaseReference = firebaseDatabase.getReference("Users").child(mFirebaseAuth.getCurrentUser().getUid());
-
-            databaseReference.addValueEventListener(new ValueEventListener()
-            {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot)
-                {
-                    final  String usertypetxt = dataSnapshot.child("Users").getValue(String.class);
-
-                    showcurrent_user.setText(usertypetxt);
-
-                    if(usertypetxt.matches("StudentUsers"))
-                    {
-                        final String usersemail = dataSnapshot.child("Users").child("StudentUsers").getValue(String.class);
-                        final String usersname = dataSnapshot.child("Users").child("StudentUsers").getValue(String.class);
-                    }
-                    else if(usertypetxt.matches("GuestUsers"))
-                    {
-                        final String usersemail = dataSnapshot.child("Users").child("StudentUsers").getValue(String.class);
-                        final  String usersname = dataSnapshot.child("Users").child("StudentUsers").getValue(String.class);
-                    }
-                    else{
-                        final String usersemail = dataSnapshot.child("Users").child("StudentUsers").getValue(String.class);
-                        final  String usersname = dataSnapshot.child("Users").child("StudentUsers").getValue(String.class);
-                    }
-
-                }
-                @Override
-                public void onCancelled(DatabaseError error)
-                {
-                    // Failed to read value
-                    Log.w(TAG, "Failed to read value.", error.toException());
-                }
-            });
-            */
-///end of try to retieve
             submitbuttton.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -195,7 +154,6 @@ public class registryFrag extends Fragment
 
            return  view;
         }
-
 
      public void referalreg()
      {
@@ -268,7 +226,7 @@ public class registryFrag extends Fragment
                      if (haveNetwork())
                      {
                          //now connect to the database
-                         databaseReference = firebaseDatabase.getReference( "Referrals").child("Kelvin Rono");
+                         databaseReference = firebaseDatabase.getReference( "Kelvin");
                          String id = databaseReference.push().getKey();
                          //send to database
                          Data.referals myreferals = new Data.referals(mrefstdname, mrefgenderselect, mrefphoneno2, mrefemail, mrefgrade, mrefintake, mrefyrofjoining, mreflevels, mrefcounty);
