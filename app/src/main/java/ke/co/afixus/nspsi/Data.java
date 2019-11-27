@@ -13,7 +13,7 @@ public class Data {
         String phoneno1;
         String phoneno2;
         String email;
-        // String  id;
+         //String  id;
 
         public void Student_staff(){
             //empty constructure gets inititated when data is loaded
@@ -67,13 +67,13 @@ public class Data {
             this.email = email;
         }
 
-        //public String getId() {
-        //return id;
+       // public String getId() {
+       // return id;
         // }
 
-        public void setId(String id) {
-            // this.id = id;
-        }
+        //public void setId(String id) {
+         // this.id = id;
+        //}
 
         public Student_staff(String usertype, String admno_staffno, String stdname, String phoneno1, String phoneno2, String email) {
             this.usertype = usertype;
@@ -82,13 +82,16 @@ public class Data {
             this.phoneno1 = phoneno1;
             this.phoneno2 = phoneno2;
             this.email = email;
-            // this.id = id;
+            //this.id = id;
         }
     }
 
     public static  class referals
     {
         //r to mean referals
+
+        String refereename;
+        String refereeid;
         String rstdname;
         String rstdgender;
         String rstdphoneno1;
@@ -102,10 +105,20 @@ public class Data {
 
 
 
+
         public void referals(){
 
             //empty costructor
         }
+
+        public String getRefereename() {
+            return refereename;
+        }
+
+        public String getRefereeid() {
+            return refereeid;
+        }
+
 
         public String getRstdname() {
             return rstdname;
@@ -142,7 +155,9 @@ public class Data {
             return rstdcounty;
         }
 
-        public referals(String rstdname, String rstdgender, String rstdphoneno1, String rstdemail, String stdgrade, String rstdintake, String rstdyrofjoining, String rstdlevels, String rstdcounty) {
+        public referals(  String refereename, String refereeid,String rstdname, String rstdgender, String rstdphoneno1, String rstdemail, String stdgrade, String rstdintake, String rstdyrofjoining, String rstdlevels, String rstdcounty) {
+            this.refereename =refereename;
+            this.refereeid = refereeid;
             this.rstdname = rstdname;
             this.rstdgender = rstdgender;
             this.rstdphoneno1 = rstdphoneno1;

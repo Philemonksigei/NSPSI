@@ -24,8 +24,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 //import com.google.firebase.database.DatabaseReference;
 //import com.google.firebase.database.FirebaseDatabase;
 //import com.google.firebase.database.DatabaseReference;
@@ -88,9 +92,9 @@ public class adduserActivity extends AppCompatActivity {
             });
     }
 
-
     public void signingUp()
     {
+       // final long[] registryno = {0};
         final String muser = usertype.getSelectedItem().toString();
         final String mstdadmno = stdadmno_staffno.getText().toString();
         final String mstdname = stdname.getText().toString();
@@ -148,65 +152,61 @@ public class adduserActivity extends AppCompatActivity {
             stdpassword2 .requestFocus();
         }
         else  {
-
-            if (haveNetwork())
-            {
-
-                //create a the same user authentication
-                mFirebaseAuth.createUserWithEmailAndPassword(mstemail, mstdpwd1)
-                        .addOnCompleteListener(adduserActivity.this, new OnCompleteListener<AuthResult>()
-                        {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful())
+                                if (haveNetwork())
                                 {
-                                    if( muser.equals("Student"))
+                                    mFirebaseAuth.createUserWithEmailAndPassword(mstemail, mstdpwd1)
+                                    .addOnCompleteListener(adduserActivity.this, new OnCompleteListener<AuthResult>()
                                     {
-                                        databaseReference = firebaseDatabase.getReference(mFirebaseAuth.getUid());
-                                        //.child("StudentUsers")
-                                    ;
-                                    }
-                                    if(muser.equals("Staff"))
-                                    {
-                                        databaseReference = firebaseDatabase.getReference(mFirebaseAuth.getUid());
-                                        //.child("Staff");
-                                    }
-                                    if(muser.equals("Guest"))
-                                    {
-                                        databaseReference = firebaseDatabase.getReference(mFirebaseAuth.getUid());
-                                        //.child("Guest");
-                                    }
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful())
+                                            {
+                                                mFirebaseAuth.getUid();
+                                                if( muser.equals("Student"))
+                                                {
+                                                    databaseReference = firebaseDatabase.getReference("Users").child(mFirebaseAuth.getUid());
 
-                                    //String id = databaseReference.push().getKey();
+                                                }
+                                                if(muser.equals("Staff"))
+                                                {
+                                                    databaseReference = firebaseDatabase.getReference("Users").child(mFirebaseAuth.getUid());
 
-                                    Data.Student_staff student_staff= new Data.Student_staff(muser,mstdadmno, mstdname, mstdphoneno1,mstdphoneno2, mstemail);
-                                    //send to database
-                                    databaseReference.setValue(student_staff);
-                                    databaseReference.setValue(student_staff);
-                                    databaseReference.setValue(student_staff);
-                                    databaseReference.setValue(student_staff);
-                                    databaseReference.setValue(student_staff);
-                                    databaseReference.setValue(student_staff);
+                                                }
+                                                if(muser.equals("Guest"))
+                                                {
+                                                    databaseReference = firebaseDatabase.getReference("Users").child(mFirebaseAuth.getUid());
 
-                                    mFirebaseAuth.signOut();
+                                                }
 
-                                    Toast.makeText(adduserActivity.this, "SUCCESSSSSS!", Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(getApplicationContext(), loginActivity.class);
-                                    startActivity(i);
+                                              // String id = databaseReference.push().getKey();
 
-                                    finish();
+                                                Data.Student_staff student_staff= new Data.Student_staff(muser,mstdadmno, mstdname, mstdphoneno1,mstdphoneno2, mstemail);
+                                                //send to database
+                                                databaseReference.setValue(student_staff);
+                                                databaseReference.setValue(student_staff);
+                                                databaseReference.setValue(student_staff);
+                                                databaseReference.setValue(student_staff);
+                                                databaseReference.setValue(student_staff);
+                                                databaseReference.setValue(student_staff);
+                                                //databaseReference.child(id).setValue(student_staff);
+                                                //mFirebaseAuth.signOut();
+
+                                                Toast.makeText(adduserActivity.this, "SUCCESSSSSS!", Toast.LENGTH_SHORT).show();
+                                                Intent i = new Intent(getApplicationContext(), loginActivity.class);
+                                                startActivity(i);
+                                                finish();
+                                            }
+                                            else {
+                                                Toast.makeText(adduserActivity.this, "Sorry! Could not Create user.\n Please Try again!!", Toast.LENGTH_SHORT).show();
+                                                }
+                                        }
+                                    });
                                 }
-                                else {
-                                    Toast.makeText(adduserActivity.this, "Sorry! Could not Create user.\n Please Try again!!", Toast.LENGTH_SHORT).show();
-                                    }
-                            }
-                        });
+                    else if (!haveNetwork())
+                    {
+                        Toast.makeText(this, "No Network!! Sorry!", Toast.LENGTH_SHORT).show();
+                    }
             }
-            else if (!haveNetwork())
-            {
-                Toast.makeText(this, "No Network!! Sorry!", Toast.LENGTH_SHORT).show();
-            }
-        }
     }
     private boolean haveNetwork()
     {

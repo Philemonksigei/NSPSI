@@ -52,7 +52,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/h1main_about_nspsi" />
 
             <TextView
-                android:id="@+id/nspsi_about_story"
+                android:id="@+id/nspsi_about_storyid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
