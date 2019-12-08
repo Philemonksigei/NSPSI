@@ -24,12 +24,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 //import com.google.firebase.database.DatabaseReference;
 //import com.google.firebase.database.FirebaseDatabase;
 //import com.google.firebase.database.DatabaseReference;
@@ -106,7 +102,6 @@ public class adduserActivity extends AppCompatActivity {
         String mstdpwd1 = stdpassword1.getText().toString().trim();
         String mstdpwd2 = stdpassword2.getText().toString().trim();
 
-
         if(muser.equals("-Usertype-"))
         {
             Toast.makeText(this, "Sorry!! \n Please select correct USERTYPE!", Toast.LENGTH_SHORT).show();
@@ -123,6 +118,10 @@ public class adduserActivity extends AppCompatActivity {
             stdphoneno1.requestFocus();
             stdphoneno2.setError("Invalid Phone Number!");
             stdphoneno2.requestFocus();
+        }
+
+        else   if(!(mstdphoneno1.equals(mstdphoneno2))){
+            Toast.makeText(getApplicationContext(), "Phone numbers do not match!", Toast.LENGTH_SHORT).show();
         }
         else if (mstemail.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(mstemail).matches())
         {
@@ -161,33 +160,35 @@ public class adduserActivity extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                             if (task.isSuccessful())
                                             {
-                                                mFirebaseAuth.getUid();
+
                                                 if( muser.equals("Student"))
                                                 {
+                                                    mFirebaseAuth.getUid();
                                                     databaseReference = firebaseDatabase.getReference("Users").child(mFirebaseAuth.getUid());
 
                                                 }
                                                 if(muser.equals("Staff"))
                                                 {
+                                                    mFirebaseAuth.getUid();
                                                     databaseReference = firebaseDatabase.getReference("Users").child(mFirebaseAuth.getUid());
 
                                                 }
                                                 if(muser.equals("Guest"))
-                                                {
+                                                { mFirebaseAuth.getUid();
                                                     databaseReference = firebaseDatabase.getReference("Users").child(mFirebaseAuth.getUid());
 
                                                 }
 
                                               // String id = databaseReference.push().getKey();
 
-                                                Data.Student_staff student_staff= new Data.Student_staff(muser,mstdadmno, mstdname, mstdphoneno1,mstdphoneno2, mstemail);
+                                                Data.Student_staff student_staff= new Data.Student_staff(muser,mstdadmno, mstdname, mstdphoneno1, mstemail);
                                                 //send to database
                                                 databaseReference.setValue(student_staff);
                                                 databaseReference.setValue(student_staff);
                                                 databaseReference.setValue(student_staff);
                                                 databaseReference.setValue(student_staff);
                                                 databaseReference.setValue(student_staff);
-                                                databaseReference.setValue(student_staff);
+                                               // databaseReference.setValue(student_staff);
                                                 //databaseReference.child(id).setValue(student_staff);
                                                 //mFirebaseAuth.signOut();
 

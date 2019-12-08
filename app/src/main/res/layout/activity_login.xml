@@ -10,20 +10,18 @@
 
     <Button
         android:id="@+id/button_login"
-        android:layout_width="0dp"
+        android:layout_width="213dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="128dp"
         android:background="@drawable/custom_button"
         android:text="Login"
         android:textAllCaps="false"
-        android:textColor="#0D2AC7"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/login_password"
-        app:layout_constraintStart_toStartOf="@+id/login_password"
-        app:layout_constraintTop_toBottomOf="@+id/login_password"
-        app:layout_constraintVertical_bias="0.154" />
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/progress_pb"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/progress_pb"
+        app:layout_constraintTop_toBottomOf="@+id/progress_pb" />
 
     <TextView
         android:id="@+id/signupbtn"
@@ -45,7 +43,7 @@
     <EditText
         android:id="@+id/email_login"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginTop="72dp"
         android:background="@drawable/fields_bg"
         android:ems="10"
@@ -60,13 +58,14 @@
 
     <EditText
         android:id="@+id/login_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/fields_bg"
         android:ems="10"
         android:gravity="bottom|center_horizontal"
         android:inputType="textPassword"
+        android:scrollbarSize="6dp"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/email_login"
@@ -88,12 +87,22 @@
         android:id="@+id/newuserlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="40dp"
         android:text="New User?"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/button_login"
-        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/button_login"
         app:layout_constraintTop_toBottomOf="@+id/button_login" />
+
+    <ProgressBar
+        android:id="@+id/progress_pb"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/login_password"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/login_password"
+        app:layout_constraintTop_toBottomOf="@+id/login_password" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,12 +17,18 @@
             android:icon="@drawable/ic_about"
             android:title="@string/about_nspsi" />
         <item
-            android:id="@+id/nav_aboutapp"
+            android:id="@+id/nav_myprofile"
             android:icon="@drawable/ic_report_black_24dp"
-            android:title="About this App" />
+            android:title="@string/my_profile" />
+        <item
+        android:id="@+id/nav_aboutapp"
+        android:icon="@drawable/ic_report_black_24dp"
+        android:title="@string/about_this_app" />
+
+
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"

@@ -89,6 +89,15 @@ public class homeActivity extends AppCompatActivity
             startActivity(i);
             finish();
         }
+
+        if (id == R.id.refresh)
+        {
+            Fragment fragment= new registryFrag();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.interchange_area, fragment);
+            fragmentTransaction.commit();
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -106,17 +115,19 @@ public class homeActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_my_list)
         {
-            fragment = new mylistFrag();
-
+            fragment = new showRefferrals();
         }
         else if (id == R.id.nav_aboutnspsi)
         {
             fragment = new frag_AboutNSPSI();
         }
+        else if (id == R.id.nav_myprofile)
+        {
+            fragment = new myprofileFrag();
+        }
         else if (id == R.id.nav_aboutapp)
         {
             fragment = new fragAboutApp();
-
         }
         else if (id == R.id.nav_share)
         {

@@ -88,6 +88,7 @@ public class loginActivity extends AppCompatActivity {
 
                     if(haveNetwork())
                     {
+                        mFirebaseAuth = FirebaseAuth.getInstance();
                         mFirebaseAuth.signInWithEmailAndPassword(mstemail, mstdpwd1)
                                 .addOnCompleteListener(loginActivity.this, new OnCompleteListener<AuthResult>()
                                 {
@@ -140,7 +141,7 @@ public class loginActivity extends AppCompatActivity {
             }
         });
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
+
         mAuthStateListener = new FirebaseAuth.AuthStateListener()
         {
             @Override

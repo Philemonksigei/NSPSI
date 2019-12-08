@@ -25,7 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import static android.content.Context.CONNECTIVITY_SERVICE;
 
@@ -39,12 +39,11 @@ public class registryFrag extends Fragment
      EditText refphoneno2;
      EditText refemail;
      Spinner refgrade;
-     Spinner refcourses;
+     Spinner refcoursesSpinner;
      Spinner refintake;
      Spinner reflevels;
-     Spinner refyrofjoining;
-     Spinner refcounty;
      Button submitbuttton;
+     long EntryNO =0;
      //String refereename;
      //DatePicker datePicker;
 
@@ -52,13 +51,13 @@ public class registryFrag extends Fragment
      FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
      DatabaseReference databaseReference;
      FirebaseAuth mFirebaseAuth;
-
      //TextViews for retrieval purposes only
      TextView refnameview;
      TextView refphoneview;
-
-
-
+     //dealing with courses retrieval
+     ArrayAdapter<String> adapter_courses;
+     ArrayList<String> spinner_courses;
+     ValueEventListener listener;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState)
@@ -66,61 +65,71 @@ public class registryFrag extends Fragment
             // Inflate the layout for this fragment
            View view = inflater.inflate(R.layout.fragment_registry, container, false);
 
-           //retrieve user here
+//RETRIEVE USER
             refnameview = view.findViewById(R.id.curentusertxt);
             refphoneview= view.findViewById(R.id.userphoneid);
             //long registryno;
 
-            mFirebaseAuth= FirebaseAuth.getInstance();
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(mFirebaseAuth.getUid());
-            databaseReference.addValueEventListener(new ValueEventListener()
-                        {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                            {
-                               String refereename = dataSnapshot.child("stdname").getValue().toString();
-                                String  refereephone = dataSnapshot.child("phoneno1").getValue().toString();
-                                refnameview.setText( "By:" + refereename+" ");
-                                refphoneview.setText(":-"+refereephone);
-                            }
+            if (haveNetwork())
+            {//check network just incase the user logged well but data was disconnected
+                mFirebaseAuth= FirebaseAuth.getInstance();
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(mFirebaseAuth.getUid());
+                databaseReference.addValueEventListener(new ValueEventListener()
+                {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                    {
+                        String refereename = dataSnapshot.child("stdname").getValue().toString();
+                        String  refereephone = dataSnapshot.child("phoneno1").getValue().toString();
+                        refnameview.setText( "By:" + refereename+" ");
+                        refphoneview.setText(":-"+refereephone);
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError)
-                            {
-                                Toast.makeText(getActivity(), "No such user!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-            //end of user retrieval
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError)
+                    {
+                        Toast.makeText(getActivity(), "No such user!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                //end of user retrieval
 
+            }
+            else
+            {
+                Toast.makeText(getActivity(), "Oopssss... Network Error!", Toast.LENGTH_SHORT).show();
 
+            }
+
+///COURSES showing on the spinner
+
+ refcoursesSpinner =  view.findViewById(R.id.spinnercourse);
+ databaseReference = FirebaseDatabase.getInstance().getReference().child("Courses");
+
+ spinner_courses = new ArrayList<>();
+ adapter_courses = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, spinner_courses);
+ refcoursesSpinner.setAdapter(adapter_courses);
+ retrieveCourses();
             refstdname = (EditText) view.findViewById(R.id.stdname);
             refgenderselect = view.findViewById(R.id.genderspinner);
             refphoneno1 =  view.findViewById(R.id.phone1);
             refphoneno2 = view.findViewById(R.id.phone2);
             refemail =  view.findViewById(R.id.emailid);
             refintake =  view.findViewById(R.id.spinnerintake);
-            refcounty =  view.findViewById(R.id.spinnercounty);
             refgrade = view.findViewById(R.id.grademark);
-            refcourses = view.findViewById(R.id.spinnercourse);
             reflevels =  view.findViewById(R.id.spinnerlevel);
-            refyrofjoining =  view.findViewById(R.id.spinneryrjoin);
             submitbuttton = (Button) view.findViewById(R.id.submitdetails);
             //gender
             String [] mygender = {"-Gender-","Male","Female",};
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, mygender);
             adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
             refgenderselect.setAdapter(adapter);
+
             //intakes
             String [] intakes = {"-Intake-","May","September","January",};
             ArrayAdapter<String> adapterintake = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, intakes);
             adapterintake.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
             refintake.setAdapter(adapterintake);
-            //counties, using string resources
-            String [] ourcounties;
-            ourcounties= getResources().getStringArray(R.array.counties);
-            ArrayAdapter<String> adaptercounties = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, ourcounties);
-            adaptercounties.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-            refcounty.setAdapter(adaptercounties);
+
             //kcse grade
             final String [] kcsegrade;
             kcsegrade = getResources().getStringArray(R.array.grades);
@@ -128,50 +137,78 @@ public class registryFrag extends Fragment
             adapterkcsegrade.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
             refgrade.setAdapter(adapterkcsegrade);
 
-                         /*///COURSES
-                            FirebaseDatabase.getInstance();
-                            databaseReference = FirebaseDatabase.getInstance().getReference().child("Courses").addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    String [] nspsicourses;
-                                    nspsicourses = getResources().getStringArray(R.array.);
-                                    ArrayAdapter<String> adaptercourses = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, nspsicourses);
-                                    adapterkcsegrade.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-                                    refcourses.setAdapter(adaptercourses);
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-                         */
-
             String [] levelofcourses;
             levelofcourses = getResources().getStringArray(R.array.course_level);
             ArrayAdapter<String> adaptercourselevel = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, levelofcourses);
             adaptercourselevel.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
             reflevels.setAdapter(adaptercourselevel);
 
-            //course levels
-            String [] yrofjoin;
-            yrofjoin = getResources().getStringArray(R.array.yearof_join);
-            ArrayAdapter<String> adapteryrjoin = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, yrofjoin);
-            adapteryrjoin.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-            refyrofjoining.setAdapter(adapteryrjoin);
+
 
             submitbuttton.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
-                    referalreg();
+
+                    if(haveNetwork()){
+                        referalreg();
+                    }
+
+                    else{
+                        Toast.makeText(getContext(), "No Internet!", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
             });
+
 
            return  view;
         }
 
+ //retrieve courses here
+
+
+     public void retrieveCourses ()
+     {
+         if(haveNetwork())
+         {
+             listener = databaseReference.addValueEventListener(new ValueEventListener()
+             {
+                 @Override
+                 public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                 {
+                     for (DataSnapshot item: dataSnapshot.getChildren())
+                     {
+
+                         spinner_courses.add(item.getValue().toString());
+                     }
+                     adapter_courses.notifyDataSetChanged();
+                 }
+
+                 @Override
+                 public void onCancelled(@NonNull DatabaseError databaseError)
+                 {
+                     Toast.makeText(getContext(), "Error in Showing Current Courses", Toast.LENGTH_SHORT).show();
+
+                 }
+             });
+
+
+         }
+
+         else{
+                 //Courses
+                 String [] mycozplaceholder = {"-Course-"};
+                 ArrayAdapter<String> adaptercozholder = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, mycozplaceholder);
+                 adaptercozholder.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                 refcoursesSpinner.setAdapter(adaptercozholder);
+            }
+     }
+
+
+//send referrrals to database
      public void referalreg()
      {
          String  mrefereename;
@@ -183,27 +220,31 @@ public class registryFrag extends Fragment
          String  mrefphoneno2;
          String mrefemail;
          String mrefgrade;
-         //String mrefcourse;
+         String mrefcourse;
          String mrefintake;
-         String mrefyrofjoining;
          String mreflevels;
-         String  mrefcounty;
-
 
          mrefereename = refnameview.getText().toString().trim();
          mrefereephone = refphoneview.getText().toString().trim();
-
          mrefstdname = refstdname.getText().toString().trim();
          mrefgenderselect =  refgenderselect.getSelectedItem().toString().trim();
          mrefphoneno1 = refphoneno1.getText().toString();
-         mrefphoneno2= refphoneno2.getText().toString();
+          mrefphoneno2= refphoneno2.getText().toString();
          mrefemail = refemail.getText().toString().trim();
          mrefgrade =   refgrade.getSelectedItem().toString().trim();
-         //mrefcourse =  refcourses.getSelectedItem().toString();
+         mrefcourse =  refcoursesSpinner.getSelectedItem().toString();
          mrefintake =   refintake.getSelectedItem().toString().trim();
-         mrefyrofjoining =  refyrofjoining.getSelectedItem().toString();
          mreflevels =   reflevels.getSelectedItem().toString().trim();
-         mrefcounty =   refcounty.getSelectedItem().toString().trim();
+
+         if ( mrefereename.isEmpty()|| mrefereename.isEmpty()){
+             refstdname.setError("Network Error!");
+             refstdname.requestFocus();
+         }
+
+         if (mrefstdname.isEmpty()){
+             refstdname.setError("Name cannot be Empty");
+             refstdname.requestFocus();
+         }
 
          if (mrefstdname.isEmpty()){
              refstdname.setError("Name cannot be Empty");
@@ -233,49 +274,35 @@ public class registryFrag extends Fragment
          else    if(refgrade.equals("-Grade-")){
              Toast.makeText(getActivity(), "Please choose KCSE Grade!", Toast.LENGTH_SHORT).show();
          }
+         else  if(refcoursesSpinner.getSelectedItem().equals("-Course-")){
+             Toast.makeText(getActivity(), "Please choose a Course", Toast.LENGTH_SHORT).show();
+         }
+
          else  if(refintake.equals("-Intake-")){
              Toast.makeText(getActivity(), "Please Intake!", Toast.LENGTH_SHORT).show();
-         }
-         else if(refyrofjoining.equals("-Year-")){
-             Toast.makeText(getActivity(), "Please choose year to Join!", Toast.LENGTH_SHORT).show();
-         }
-         else if(reflevels.equals("-Level-")){
-             Toast.makeText(getActivity(), "Please choose Level!", Toast.LENGTH_SHORT).show();
-         }
-         else  if(refcounty.equals("-County-")){
-             Toast.makeText(getActivity(), "Please choose COUNTY!", Toast.LENGTH_SHORT).show();
          }
          else {
                 {
                      if (haveNetwork())
                      {
                              //now connect to the database
-                             databaseReference = firebaseDatabase.getReference("Refferrals").child(mrefereephone);
-                             String id = databaseReference.push().getKey();
+                           mFirebaseAuth= FirebaseAuth.getInstance();
+                           databaseReference = firebaseDatabase.getReference("Refferrals");
+                           //.child(mFirebaseAuth.getUid());
                              //send to database
-                             Data.referals myreferals = new Data.referals(mrefereename,mrefereephone,mrefstdname, mrefgenderselect, mrefphoneno2, mrefemail, mrefgrade, mrefintake, mrefyrofjoining, mreflevels, mrefcounty);
-                             databaseReference.child(id).setValue(myreferals);
-                             databaseReference.child(id).setValue(myreferals);
-                             databaseReference.child(id).setValue(myreferals);
-                             databaseReference.child(id).setValue(myreferals);
-                             databaseReference.child(id).setValue(myreferals);
-                             databaseReference.child(id).setValue(myreferals);
-                             databaseReference.child(id).setValue(myreferals);
-                             databaseReference.child(id).setValue(myreferals);
-                             databaseReference.child(id).setValue(myreferals);
-                             databaseReference.child(id).setValue(myreferals);
-                             //clear fields
+                            Refferrals myreferals = new Refferrals(mrefereename,mrefereephone,mrefstdname,
+                              mrefgenderselect, mrefphoneno2, mrefemail, mrefgrade,mrefcourse, mrefintake, mreflevels);
+                             databaseReference.push().setValue(myreferals);
+
                              refstdname.setText("");
                              refgenderselect.setSelection(0);
                              refphoneno1.setText("");
                              refphoneno2.setText("");
                              refemail.setText("");
                              refgrade.setSelection(0);
-                             //Spinner refcourses;
+                              refcoursesSpinner.setSelection(0);
                              refintake.setSelection(0);
                              reflevels.setSelection(0);
-                             refyrofjoining.setSelection(0);
-                             refcounty.setSelection(0);
                              Toast.makeText(getActivity(), "Congratulations! \n You have added a student Successfully!", Toast.LENGTH_SHORT).show();
                      }
                      else if (!haveNetwork())
@@ -283,7 +310,6 @@ public class registryFrag extends Fragment
                          Toast.makeText(getActivity(), "Sorry it appears you are disconnected!!\n Check your internet connection!", Toast.LENGTH_SHORT).show();
                      }
                 }
-
          }
 
      }

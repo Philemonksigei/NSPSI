@@ -217,5 +217,10 @@ Powered by: \nAfixus Solutions Ltd.\nwww.afixus.co.ke \n afixus.it@gmail.com
     <string name="phone_number">Phone Number.</string>
     <string name="nishkam_saint_puran_singh_institiute"> Nishkam Saint Puran Singh Institiute</string>
     <string name="nspsi">NSPSI</string>
+    <string name="about_this_app">About this App</string>
+    <string name="my_profile">My Profile</string>
+    <string name="communicate">Communicate</string>
+    <string name="myprofile_fragment">MyProfile Fragment</string>
+    <string name="refresh">Refresh</string>
 
 </resources>
