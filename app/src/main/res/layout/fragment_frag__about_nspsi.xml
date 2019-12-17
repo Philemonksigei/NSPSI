@@ -28,9 +28,8 @@
                 android:id="@+id/h1main_about_nspsi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_margin="@dimen/standard_margin"
                 android:layout_marginTop="2dp"
-                android:layout_marginEnd="8dp"
                 android:text="@string/nspsi"
                 android:textAlignment="textStart"
                 android:textColor="@color/colorPrimary"
@@ -44,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/nishkam_saint_puran_singh_institiute"
+                android:text="About NSPSI College"
                 android:textAlignment="textStart"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="15sp"
@@ -57,6 +56,32 @@
                 android:id="@+id/nspsi_about_storyid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/news_head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="News"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <TextView
+                android:id="@+id/news_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NewsBody" />
+
+            <TextView
+                android:id="@+id/dates_head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Important Dates"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="dates_body" />
 
         </LinearLayout>
 

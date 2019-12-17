@@ -151,58 +151,56 @@ public class adduserActivity extends AppCompatActivity {
             stdpassword2 .requestFocus();
         }
         else  {
-                                if (haveNetwork())
+                if (haveNetwork())
+                {
+                    mFirebaseAuth.createUserWithEmailAndPassword(mstemail, mstdpwd1)
+                    .addOnCompleteListener(adduserActivity.this, new OnCompleteListener<AuthResult>()
+                    {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful())
+                            {
+
+                                if( muser.equals("Student"))
                                 {
-                                    mFirebaseAuth.createUserWithEmailAndPassword(mstemail, mstdpwd1)
-                                    .addOnCompleteListener(adduserActivity.this, new OnCompleteListener<AuthResult>()
-                                    {
-                                        @Override
-                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                            if (task.isSuccessful())
-                                            {
+                                    mFirebaseAuth.getUid();
+                                    databaseReference = firebaseDatabase.getReference("Users").child(mFirebaseAuth.getUid());
 
-                                                if( muser.equals("Student"))
-                                                {
-                                                    mFirebaseAuth.getUid();
-                                                    databaseReference = firebaseDatabase.getReference("Users").child(mFirebaseAuth.getUid());
-
-                                                }
-                                                if(muser.equals("Staff"))
-                                                {
-                                                    mFirebaseAuth.getUid();
-                                                    databaseReference = firebaseDatabase.getReference("Users").child(mFirebaseAuth.getUid());
-
-                                                }
-                                                if(muser.equals("Guest"))
-                                                { mFirebaseAuth.getUid();
-                                                    databaseReference = firebaseDatabase.getReference("Users").child(mFirebaseAuth.getUid());
-
-                                                }
-
-                                              // String id = databaseReference.push().getKey();
-
-                                                Data.Student_staff student_staff= new Data.Student_staff(muser,mstdadmno, mstdname, mstdphoneno1, mstemail);
-                                                //send to database
-                                                databaseReference.setValue(student_staff);
-                                                databaseReference.setValue(student_staff);
-                                                databaseReference.setValue(student_staff);
-                                                databaseReference.setValue(student_staff);
-                                                databaseReference.setValue(student_staff);
-                                               // databaseReference.setValue(student_staff);
-                                                //databaseReference.child(id).setValue(student_staff);
-                                                //mFirebaseAuth.signOut();
-
-                                                Toast.makeText(adduserActivity.this, "SUCCESSSSSS!", Toast.LENGTH_SHORT).show();
-                                                Intent i = new Intent(getApplicationContext(), loginActivity.class);
-                                                startActivity(i);
-                                                finish();
-                                            }
-                                            else {
-                                                Toast.makeText(adduserActivity.this, "Sorry! Could not Create user.\n Please Try again!!", Toast.LENGTH_SHORT).show();
-                                                }
-                                        }
-                                    });
                                 }
+                                if(muser.equals("Staff"))
+                                {
+                                    mFirebaseAuth.getUid();
+                                    databaseReference = firebaseDatabase.getReference("Users").child(mFirebaseAuth.getUid());
+
+                                }
+                                if(muser.equals("Guest"))
+                                { mFirebaseAuth.getUid();
+                                    databaseReference = firebaseDatabase.getReference("Users").child(mFirebaseAuth.getUid());
+
+                                }
+
+                              // String id = databaseReference.push().getKey();
+
+                                Data.Student_staff student_staff= new Data.Student_staff(muser,mstdadmno, mstdname, mstdphoneno1, mstemail);
+                                //send to database
+                                databaseReference.setValue(student_staff);
+                                databaseReference.setValue(student_staff);
+                                databaseReference.setValue(student_staff);
+                                databaseReference.setValue(student_staff);
+                                databaseReference.setValue(student_staff);
+
+
+                                Toast.makeText(adduserActivity.this, "SUCCESSSSSS!", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(getApplicationContext(), loginActivity.class);
+                                startActivity(i);
+                                finish();
+                            }
+                            else {
+                                Toast.makeText(adduserActivity.this, "Sorry! Could not Create user.\n Please Try again!!", Toast.LENGTH_SHORT).show();
+                                }
+                        }
+                    });
+                }
                     else if (!haveNetwork())
                     {
                         Toast.makeText(this, "No Network!! Sorry!", Toast.LENGTH_SHORT).show();

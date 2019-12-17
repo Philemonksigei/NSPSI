@@ -7,55 +7,163 @@
     tools:context=".myprofileFrag">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
+    </LinearLayout>
+
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="65dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="80dp"
+        android:id="@+id/usersProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/standard_margin"
+        android:layout_margin="@dimen/standard_margin"
         android:src="@drawable/googleg_standard_color_18"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/memberidtextview"
-        android:layout_width="wrap_content"
+        android:id="@+id/usersnametextView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        android:layout_margin="@dimen/standard_margin"
+        android:layout_marginTop="44dp"
+        android:text="username"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usersProfile" />
 
     <TextView
-        android:id="@+id/memberphonetextview"
-        android:layout_width="wrap_content"
+        android:id="@+id/usersphonetextView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/mynametextview"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/mynametextview"
-        app:layout_constraintTop_toBottomOf="@+id/mynametextview" />
+        android:layout_margin="@dimen/standard_margin"
+        android:text="userphone"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userstypetextView" />
 
     <TextView
-        android:id="@+id/totalrefferralstextview"
-        android:layout_width="wrap_content"
+        android:id="@+id/usersemailtextView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/memberphonetextview"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/memberphonetextview"
-        app:layout_constraintTop_toBottomOf="@+id/memberphonetextview" />
+        android:layout_margin="@dimen/standard_margin"
+        android:text="useremail"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usersphonetextView" />
 
     <TextView
-        android:id="@+id/mynametextview"
-        android:layout_width="wrap_content"
+        android:id="@+id/userstypetextView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/memberidtextview"
+        android:layout_margin="@dimen/standard_margin"
+        android:text="@string/usertype"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/memberidtextview"
-        app:layout_constraintTop_toBottomOf="@+id/memberidtextview" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usersnametextView" />
+
+    <TextView
+        android:id="@+id/usersIDtextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_margin"
+        android:text="userID"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usersemailtextView" />
+
+    <TextView
+        android:id="@+id/ref_totals"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_margin"
+        android:text="Totalrefferrals"
+        android:textAlignment="textEnd"
+        android:textColor="#8BC34A"
+        android:textSize="17sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usersIDtextView" />
+
+    <Button
+        android:id="@+id/button_update_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_margin"
+        android:layout_marginTop="44dp"
+        android:text="Edit Login Details"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/ref_totals"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ref_totals"
+        app:layout_constraintTop_toBottomOf="@+id/ref_totals" />
+
+    <EditText
+        android:id="@+id/current_pwd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Curreent password"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/button_update_details"
+        app:layout_constraintStart_toStartOf="@+id/button_update_details"
+        app:layout_constraintTop_toBottomOf="@+id/button_update_details" />
+
+    <EditText
+        android:id="@+id/new_pwd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="New Password"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/current_pwd"
+        app:layout_constraintStart_toStartOf="@+id/current_pwd"
+        app:layout_constraintTop_toBottomOf="@+id/current_pwd" />
+
+    <EditText
+        android:id="@+id/confirm_new_pwd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Confirm New Password"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/new_pwd"
+        app:layout_constraintStart_toStartOf="@+id/new_pwd"
+        app:layout_constraintTop_toBottomOf="@+id/new_pwd" />
+
+    <Button
+        android:id="@+id/update_login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_margin"
+        android:text="Update Details"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/confirm_new_pwd"
+        tools:layout_editor_absoluteX="13dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

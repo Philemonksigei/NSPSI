@@ -1,7 +1,5 @@
 package ke.co.afixus.nspsi;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +29,7 @@ public class showRefferrals extends Fragment
        DatabaseReference mDatabaseReference;
        ArrayList<Refferrals> list;
        myAdapter adapter;
+       FirebaseAuth mFirebaseAuth;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,21 +40,21 @@ public class showRefferrals extends Fragment
             mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             list = new ArrayList<Refferrals>();
 
-
-            mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Refferrals");
-            mDatabaseReference.addValueEventListener(new ValueEventListener() {
+            mFirebaseAuth = FirebaseAuth.getInstance();
+            mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Refferrals").child(mFirebaseAuth.getUid());
+            mDatabaseReference.addValueEventListener(new ValueEventListener()
+            {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                {
                     for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
                     {
-                         Refferrals refferrals = dataSnapshot1.getValue(Refferrals.class);
-                         list.add(refferrals);
+                         Refferrals refferralsSpecific = dataSnapshot1.getValue(Refferrals.class);
+                         list.add(refferralsSpecific);
                     }
                     adapter =new myAdapter(getContext(),list);
                     mRecyclerView.setAdapter(adapter);
-
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     Toast.makeText(getContext(), "Oopssss...... Something wnt wrong!", Toast.LENGTH_SHORT).show();
