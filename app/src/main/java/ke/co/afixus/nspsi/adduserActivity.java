@@ -181,7 +181,7 @@ public class adduserActivity extends AppCompatActivity {
 
                               // String id = databaseReference.push().getKey();
 
-                                Data.Student_staff student_staff= new Data.Student_staff(muser,mstdadmno, mstdname, mstdphoneno1, mstemail);
+                                registryData.Student_staff student_staff= new registryData.Student_staff(muser,mstdadmno, mstdname, mstdphoneno1, mstemail);
                                 //send to database
                                 databaseReference.setValue(student_staff);
                                 databaseReference.setValue(student_staff);

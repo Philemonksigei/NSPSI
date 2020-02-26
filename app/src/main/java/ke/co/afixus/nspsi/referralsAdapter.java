@@ -11,41 +11,36 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder>
+public class referralsAdapter extends RecyclerView.Adapter<referralsAdapter.myViewHolder>
         {
             Context context;
-            ArrayList<Refferrals> myDataList;
-            public myAdapter(Context contxt, ArrayList<Refferrals> mylist)
+            ArrayList<referralsData> myDataList;
+            public referralsAdapter(Context contxt, ArrayList<referralsData> mylist)
             {
-           context = contxt;
-           myDataList = mylist;
-
+               context = contxt;
+               myDataList = mylist;
             }
             @NonNull
             @Override
             public myViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType)
             {
-                return new myViewHolder(LayoutInflater.from(context).inflate(R.layout.refrow,viewGroup, false));
+                return new myViewHolder(LayoutInflater.from(context).inflate(R.layout.referralsrow,viewGroup, false));
             }
-
             @Override
             public void onBindViewHolder(@NonNull myViewHolder holder, int position)
                 {
-
                     holder.nameTextView.setText("Name:"+myDataList.get(position).getRstdname());
                     holder.phoneTextView.setText("Mobile:"+myDataList.get(position).getRstdphoneno1());
                     holder.courseTextview.setText("Target Course:"+myDataList.get(position).getRstdcourse());
-                     holder.DateView.setText("Refferral Date:"+myDataList.get(position).getMyDate());
+                    holder.DateView.setText("Refferral Date:"+myDataList.get(position).getMyDate());
                 }
             @Override
             public int getItemCount()
                 {
                     return myDataList.size();
                 }
-
            class myViewHolder extends  RecyclerView.ViewHolder
             {
-
                  TextView  nameTextView, phoneTextView,courseTextview, DateView;
                 public myViewHolder(@NonNull View itemView)
                 {

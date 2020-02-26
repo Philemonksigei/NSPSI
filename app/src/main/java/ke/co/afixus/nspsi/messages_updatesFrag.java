@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,15 +20,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 
 public class messages_updatesFrag extends Fragment
     {
         FirebaseDatabase firebaseDatabase;
         DatabaseReference databaseReference;
         FirebaseAuth mFirebaseAuth;
+        RecyclerView mRecyclerView;
 
-
-        TextView StoryView;
+        DatabaseReference mDatabaseReference;
+        ArrayList<messagesData> list;
+        messagesAdapter adapter;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,27 +40,33 @@ public class messages_updatesFrag extends Fragment
         {
             // Inflate the layout for this fragment
            View view  = inflater.inflate(R.layout.messages_updates_frag, container, false);
-            mFirebaseAuth= FirebaseAuth.getInstance();
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("Story");
-            databaseReference.addValueEventListener(new ValueEventListener()
+            mRecyclerView = (RecyclerView) view.findViewById(R.id.messagesRecyclerview);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            list = new ArrayList<messagesData>();
+
+
+            mFirebaseAuth = FirebaseAuth.getInstance();
+            mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Stories_Messages");
+            mDatabaseReference.addValueEventListener(new ValueEventListener()
             {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                 {
-                    String MsgStory = dataSnapshot.child("Description").getValue().toString();
-                    StoryView.setText(MsgStory);
+                    for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
+                    {
+                        messagesData messagesSpec = dataSnapshot1.getValue(messagesData.class);
+                        list.add(messagesSpec);
+                    }
+                    adapter =new messagesAdapter(getContext(),list);
+                    mRecyclerView.setAdapter(adapter);
                 }
-
                 @Override
-                public void onCancelled(@NonNull DatabaseError databaseError)
-                {
-                    Toast.makeText(getActivity(), "No such user!", Toast.LENGTH_SHORT).show();
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getContext(), "Oopssss...... Something wnt wrong!", Toast.LENGTH_SHORT).show();
                 }
             });
             //end of user retrieval
-
    return  view;
         }
-
 
     }

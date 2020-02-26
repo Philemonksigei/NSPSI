@@ -85,14 +85,6 @@ public class homeActivity extends AppCompatActivity
             finish();
         }
 
-        if (id == R.id.refresh)
-        {
-            Fragment fragment= new registryFrag();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.interchange_area, fragment);
-            fragmentTransaction.commit();
-        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -110,7 +102,7 @@ public class homeActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_my_list)
         {
-            fragment = new showRefferralsFrag();
+            fragment = new referralsFrag();
         }
         else if (id == R.id.nav_aboutnspsi)
         {

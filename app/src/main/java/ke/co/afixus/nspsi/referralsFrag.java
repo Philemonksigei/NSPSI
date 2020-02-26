@@ -21,14 +21,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class showRefferralsFrag extends Fragment
+public class referralsFrag extends Fragment
     {
         View ReffView;
        RecyclerView mRecyclerView;
        FirebaseDatabase mFirebaseDatabase;
        DatabaseReference mDatabaseReference;
-       ArrayList<Refferrals> list;
-       myAdapter adapter;
+       ArrayList<referralsData> list;
+       referralsAdapter adapter;
        FirebaseAuth mFirebaseAuth;
 
         @Override
@@ -38,7 +38,7 @@ public class showRefferralsFrag extends Fragment
             ReffView = inflater.inflate(R.layout.fragment_show_refferrals, container, false);
             mRecyclerView = (RecyclerView) ReffView.findViewById(R.id.refferals_recyclerView);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            list = new ArrayList<Refferrals>();
+            list = new ArrayList<referralsData>();
 
             mFirebaseAuth = FirebaseAuth.getInstance();
             mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Refferrals").child(mFirebaseAuth.getUid());
@@ -49,10 +49,10 @@ public class showRefferralsFrag extends Fragment
                 {
                     for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
                     {
-                         Refferrals refferralsSpecific = dataSnapshot1.getValue(Refferrals.class);
-                         list.add(refferralsSpecific);
+                         referralsData referralsDataSpecific = dataSnapshot1.getValue(referralsData.class);
+                         list.add(referralsDataSpecific);
                     }
-                    adapter =new myAdapter(getContext(),list);
+                    adapter =new referralsAdapter(getContext(),list);
                     mRecyclerView.setAdapter(adapter);
                 }
                 @Override

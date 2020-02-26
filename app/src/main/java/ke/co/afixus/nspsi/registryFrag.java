@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -272,12 +271,12 @@ public class registryFrag extends Fragment
                  {
                          //now connect to the database
                      mFirebaseAuth= FirebaseAuth.getInstance();
-                     databaseReference = firebaseDatabase.getReference("Refferrals").child(mFirebaseAuth.getUid());
-                     Refferrals myreferals = new Refferrals(mrefereename,mrefereephone ,mrefstdname,
+                     databaseReference = firebaseDatabase.getReference("referralsData").child(mFirebaseAuth.getUid());
+                     referralsData myreferals = new referralsData(mrefereename,mrefereephone ,mrefstdname,
                              mrefgenderselect, mrefphoneno2, mrefparentno, mrefgrade,mrefcourse, mrefintake, mreflevels,myDate);
                      databaseReference.push().setValue(myreferals);
                      databaseReference2 = firebaseDatabase.getReference("Refferrals_General");
-                     Refferrals myreferals_general = new Refferrals(mrefereename,mrefereephone,mrefstdname,
+                     referralsData myreferals_general = new referralsData(mrefereename,mrefereephone,mrefstdname,
                              mrefgenderselect, mrefphoneno2, mrefparentno, mrefgrade,mrefcourse, mrefintake, mreflevels,myDate);
                      databaseReference2.push().setValue(myreferals_general);
 

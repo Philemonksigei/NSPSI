@@ -1,7 +1,7 @@
 package ke.co.afixus.nspsi;
 
 //This is the data source, for reffereals recuclerview
-class Refferrals
+class referralsData
 {
     //r to mean referals
    private String refereename;
@@ -16,7 +16,7 @@ class Refferrals
    private String rstdlevels;
     private String myDate;
 
-    public Refferrals() {
+    public referralsData() {
     }
 
     public String getRefereename() {
@@ -107,10 +107,10 @@ class Refferrals
         this.myDate = myDate;
     }
 
-    public Refferrals(String refereename, String refereeid, String rstdname,
-                      String rstdgender, String rstdphoneno1, String rstdemail,
-                      String stdgrade, String rstdcourse, String rstdintake,
-                      String rstdlevels, String myDate)
+    public referralsData(String refereename, String refereeid, String rstdname,
+                         String rstdgender, String rstdphoneno1, String rstdemail,
+                         String stdgrade, String rstdcourse, String rstdintake,
+                         String rstdlevels, String myDate)
     {
         this.refereename = refereename;
         this.refereeid = refereeid;

@@ -118,7 +118,7 @@ public class loginActivity extends AppCompatActivity {
 
                     else if(!haveNetwork())
                     {
-                        Toast.makeText(loginActivity.this, "No Internet Connection!\n Turn on Mobile Data or Join WIFI.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(loginActivity.this, "No Internet Connection!\n Turn on Mobile registryData or Join WIFI.", Toast.LENGTH_SHORT).show();
                         pb.setVisibility(View.GONE);
                     }
                 }

@@ -222,4 +222,5 @@ Powered by: \nAfixus Solutions Ltd.\nwww.afixus.co.ke \n afixus.it@gmail.com
     <string name="communicate">Communicate</string>
     <string name="myprofile_fragment">MyProfile Fragment</string>
     <string name="refresh">Refresh</string>
+    <string name="message_updates">Message/Updates</string>
 </resources>

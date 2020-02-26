@@ -1,6 +1,6 @@
 package ke.co.afixus.nspsi;
 
-public class Data {
+public class registryData {
     //studentsatff trasfered here
     public static class Student_staff
     {
@@ -76,15 +76,13 @@ public class Data {
             //this.id = id;
         }
     }
-
     public static  class referals
         {
             //r to mean referals
-
             public void referals()
-                            {
-                                //empty costructor
-                            }
+                {
+                    //empty costructor
+                }
             String refereename;
             String refereeid;
             String rstdname;
