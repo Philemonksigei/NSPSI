@@ -280,16 +280,16 @@ public class registryFrag extends Fragment
                              mrefgenderselect, mrefphoneno2, mrefparentno, mrefgrade,mrefcourse, mrefintake, mreflevels,myDate);
                      databaseReference2.push().setValue(myreferals_general);
 
-                         refstdname.setText("");
-                         refgenderselect.setSelection(0);
-                         refphoneno1.setText("");
-                         refphoneno2.setText("");
-                         refparentno.setText("");
-                         refgrade.setSelection(0);
-                          refcoursesSpinner.setSelection(0);
-                         refintake.setSelection(0);
-                         reflevels.setSelection(0);
-                         Toast.makeText(getActivity(), "Congratulations! \n You have added a student Successfully!", Toast.LENGTH_SHORT).show();
+                     refstdname.setText("");
+                     refgenderselect.setSelection(0);
+                     refphoneno1.setText("");
+                     refphoneno2.setText("");
+                     refparentno.setText("");
+                     refgrade.setSelection(0);
+                      refcoursesSpinner.setSelection(0);
+                     refintake.setSelection(0);
+                     reflevels.setSelection(0);
+                     Toast.makeText(getActivity(), "Congratulations! \n You have added a student Successfully!", Toast.LENGTH_SHORT).show();
                  }
                      else if (!haveNetwork())
                      {

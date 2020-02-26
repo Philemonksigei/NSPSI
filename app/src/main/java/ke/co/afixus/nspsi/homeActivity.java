@@ -116,6 +116,10 @@ public class homeActivity extends AppCompatActivity
         {
             fragment = new frag_aboutapp();
         }
+        else if (id == R.id.nav_sbox)
+        {
+            fragment = new suggestion_boxFrag();
+        }
         else if (id == R.id.nav_share)
         {
 
