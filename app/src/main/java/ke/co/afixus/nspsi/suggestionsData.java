@@ -2,6 +2,7 @@ package ke.co.afixus.nspsi;
 
 public class suggestionsData {
     private String sboxText;
+    private String sboxDate;
 
     public suggestionsData() {
     }
@@ -14,7 +15,16 @@ public class suggestionsData {
         this.sboxText = sboxText;
     }
 
-    public suggestionsData(String sboxText) {
+    public String getSboxDate() {
+        return sboxDate;
+    }
+
+    public void setSboxDate(String sboxDate) {
+        this.sboxDate = sboxDate;
+    }
+
+    public suggestionsData(String sboxText, String sboxDate) {
         this.sboxText = sboxText;
+        this.sboxDate = sboxDate;
     }
 }

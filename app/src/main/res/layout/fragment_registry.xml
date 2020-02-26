@@ -12,26 +12,30 @@
         android:id="@+id/userphoneid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
         android:text=" "
         android:textColor="#E91E63"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.013"
         app:layout_constraintStart_toEndOf="@+id/curentusertxt"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/curentusertxt"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:width="6dp"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
         android:paddingLeft="0dp"
         android:text=" "
         android:textAlignment="textStart"
         android:textColor="@color/colorPrimary"
         android:textSize="12sp"
-        app:layout_constraintEnd_toStartOf="@+id/userphoneid"
-        app:layout_constraintHorizontal_bias="0.016"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -193,11 +197,11 @@
         app:layout_constraintTop_toBottomOf="@+id/phone1" />
 
     <EditText
-        android:layout_marginRight="@dimen/margin_sides"
-        android:layout_marginLeft="@dimen/margin_sides"
         android:id="@+id/phone2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_sides"
+        android:layout_marginRight="@dimen/margin_sides"
         android:ems="10"
         android:gravity="start"
         android:inputType="number"
@@ -222,11 +226,11 @@
         app:layout_constraintTop_toBottomOf="@+id/phone2" />
 
     <EditText
-        android:layout_marginRight="@dimen/margin_sides"
-        android:layout_marginLeft="@dimen/margin_sides"
         android:id="@+id/phone1"
         android:layout_width="0dp"
         android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/margin_sides"
+        android:layout_marginRight="@dimen/margin_sides"
         android:ems="10"
         android:gravity="start"
         android:inputType="number"
@@ -242,22 +246,19 @@
         android:id="@+id/namelabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_sides"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="@dimen/margin_sides"
         android:text="@string/name"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userphoneid" />
+        app:layout_constraintStart_toStartOf="@+id/curentusertxt"
+        tools:layout_editor_absoluteY="26dp" />
 
     <EditText
-        android:layout_marginRight="@dimen/margin_sides"
-        android:layout_marginLeft="@dimen/margin_sides"
         android:id="@+id/stdname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_sides"
+        android:layout_marginRight="@dimen/margin_sides"
         android:ems="10"
         android:gravity="start|left"
         android:inputType="textPersonName"
@@ -271,11 +272,11 @@
         app:layout_constraintTop_toBottomOf="@+id/namelabel" />
 
     <TextView
-        android:layout_marginRight="@dimen/margin_sides"
-        android:layout_marginLeft="@dimen/margin_sides"
         android:id="@+id/genderlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_sides"
+        android:layout_marginRight="@dimen/margin_sides"
         android:text="@string/gender"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -293,9 +294,10 @@
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintBottom_toTopOf="@+id/phonelabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintHorizontal_bias="0.97"
         app:layout_constraintStart_toEndOf="@+id/genderlabel"
-        app:layout_constraintTop_toBottomOf="@+id/stdname" />
+        app:layout_constraintTop_toBottomOf="@+id/stdname"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/phonelabel"

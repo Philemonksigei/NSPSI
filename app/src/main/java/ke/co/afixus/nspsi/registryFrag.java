@@ -215,7 +215,7 @@ public class registryFrag extends Fragment
          String mrefcourse;
          String mrefintake;
          String mreflevels;
-          String myDate;
+         String myDate;
 
          mrefereename = refnameview.getText().toString().trim();
          mrefereephone = refphoneview.getText().toString().trim();
