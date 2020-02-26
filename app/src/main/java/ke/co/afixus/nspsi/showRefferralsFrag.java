@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class showRefferrals extends Fragment
+public class showRefferralsFrag extends Fragment
     {
         View ReffView;
        RecyclerView mRecyclerView;

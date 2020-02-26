@@ -1,7 +1,5 @@
 package ke.co.afixus.nspsi;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class frag_AboutNSPSI extends Fragment
+public class messages_updatesFrag extends Fragment
     {
         FirebaseDatabase firebaseDatabase;
         DatabaseReference databaseReference;
@@ -35,8 +33,7 @@ public class frag_AboutNSPSI extends Fragment
                                  Bundle savedInstanceState)
         {
             // Inflate the layout for this fragment
-           View view  = inflater.inflate(R.layout.fragment_frag__about_nspsi, container, false);
-           StoryView = view.findViewById(R.id.nspsi_about_storyid);
+           View view  = inflater.inflate(R.layout.messages_updates_frag, container, false);
             mFirebaseAuth= FirebaseAuth.getInstance();
             databaseReference = FirebaseDatabase.getInstance().getReference().child("Story");
             databaseReference.addValueEventListener(new ValueEventListener()

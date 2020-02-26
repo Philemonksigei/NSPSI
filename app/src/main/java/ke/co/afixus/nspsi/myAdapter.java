@@ -50,10 +50,10 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewHolder>
                 public myViewHolder(@NonNull View itemView)
                 {
                     super(itemView);
-                    nameTextView = (TextView) itemView.findViewById(R.id.studenname);
+                    nameTextView = (TextView) itemView.findViewById(R.id.messageTopic);
                     phoneTextView = (TextView) itemView.findViewById(R.id.studentmobileno);
-                    courseTextview = (TextView) itemView.findViewById(R.id.student_targetcourse);
-                    DateView = (TextView) itemView.findViewById(R.id.dateofrefferral);
+                    courseTextview = (TextView) itemView.findViewById(R.id.messageBody);
+                    DateView = (TextView) itemView.findViewById(R.id.messageDate);
 
                 }
             }

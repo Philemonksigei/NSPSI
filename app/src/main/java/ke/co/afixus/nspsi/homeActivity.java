@@ -3,11 +3,6 @@ package ke.co.afixus.nspsi;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.View;
-
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 
@@ -115,11 +110,11 @@ public class homeActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_my_list)
         {
-            fragment = new showRefferrals();
+            fragment = new showRefferralsFrag();
         }
         else if (id == R.id.nav_aboutnspsi)
         {
-            fragment = new frag_AboutNSPSI();
+            fragment = new messages_updatesFrag();
         }
         else if (id == R.id.nav_myprofile)
         {
@@ -127,7 +122,7 @@ public class homeActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_aboutapp)
         {
-            fragment = new fragAboutApp();
+            fragment = new frag_aboutapp();
         }
         else if (id == R.id.nav_share)
         {

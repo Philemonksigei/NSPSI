@@ -40,7 +40,7 @@ public class registryFrag extends Fragment
      Spinner refgenderselect;
      EditText refphoneno1;
      EditText refphoneno2;
-     EditText refemail;
+     EditText refparentno;
      Spinner refgrade;
      Spinner refcoursesSpinner;
      Spinner refintake;
@@ -116,7 +116,7 @@ public class registryFrag extends Fragment
                 refgenderselect = view.findViewById(R.id.genderspinner);
                 refphoneno1 =  view.findViewById(R.id.phone1);
                 refphoneno2 = view.findViewById(R.id.phone2);
-                refemail =  view.findViewById(R.id.emailid);
+                refparentno =  view.findViewById(R.id.emailid);
                 refintake =  view.findViewById(R.id.spinnerintake);
                 refgrade = view.findViewById(R.id.grademark);
                 reflevels =  view.findViewById(R.id.spinnerlevel);
@@ -211,7 +211,7 @@ public class registryFrag extends Fragment
          String mrefgenderselect;
          String mrefphoneno1;
          String  mrefphoneno2;
-         String mrefemail;
+         String mrefparentno;
          String mrefgrade;
          String mrefcourse;
          String mrefintake;
@@ -224,7 +224,7 @@ public class registryFrag extends Fragment
          mrefgenderselect =  refgenderselect.getSelectedItem().toString().trim();
          mrefphoneno1 = refphoneno1.getText().toString();
           mrefphoneno2= refphoneno2.getText().toString();
-         mrefemail = refemail.getText().toString().trim();
+         mrefparentno = refparentno.getText().toString().trim();
          mrefgrade =   refgrade.getSelectedItem().toString().trim();
          mrefcourse =  refcoursesSpinner.getSelectedItem().toString();
          mrefintake =   refintake.getSelectedItem().toString().trim();
@@ -235,21 +235,14 @@ public class registryFrag extends Fragment
              refstdname.setError("Network Error!");
              refstdname.requestFocus();
          }
-
-         if (mrefstdname.isEmpty()){
+         else if (mrefstdname.isEmpty()||mrefstdname.startsWith(" ")){
              refstdname.setError("Name cannot be Empty");
              refstdname.requestFocus();
-         }
-
-         if (mrefstdname.isEmpty()){
-             refstdname.setError("Name cannot be Empty");
-             refstdname.requestFocus();
-         }
+           }
          else  if (mrefgenderselect.equals("-Gender-")){
-
              Toast.makeText(getActivity(), "Please Select Gender!", Toast.LENGTH_SHORT).show();
          }
-         else   if (mrefphoneno1.isEmpty()||mrefphoneno2.isEmpty())
+         else if (mrefphoneno1.isEmpty()||mrefphoneno2.isEmpty())
          {
              refphoneno1.setError("Phone number field cannot be Empty!");
              refphoneno1.requestFocus();
@@ -260,12 +253,8 @@ public class registryFrag extends Fragment
          else   if(!(mrefphoneno1.equals(mrefphoneno2))){
              Toast.makeText(getActivity(), "Phone numbers do not match!", Toast.LENGTH_SHORT).show();
          }
-         else   if(mrefemail.isEmpty()){ refemail.setError("Email nummber cannot be Empty!");
-             refemail.requestFocus();
-         }
-         else   if (!Patterns.EMAIL_ADDRESS.matcher(mrefemail).matches()){
-             refemail.setError("Invalid Email Address!");
-             refemail.requestFocus();
+         else   if(mrefparentno.isEmpty()||mrefparentno.startsWith(" ")){
+             refparentno.setError("Email nummber cannot be Empty!");
          }
          else    if(refgrade.equals("-Grade-")){
              Toast.makeText(getActivity(), "Please choose KCSE Grade!", Toast.LENGTH_SHORT).show();
@@ -279,30 +268,30 @@ public class registryFrag extends Fragment
          }
          else {
                 {
-                     if (haveNetwork())
-                     {
-                             //now connect to the database
-                         mFirebaseAuth= FirebaseAuth.getInstance();
-                         databaseReference = firebaseDatabase.getReference("Refferrals").child(mFirebaseAuth.getUid());
-                         Refferrals myreferals = new Refferrals(mrefereename,mrefereephone ,mrefstdname,
-                                 mrefgenderselect, mrefphoneno2, mrefemail, mrefgrade,mrefcourse, mrefintake, mreflevels,myDate);
-                         databaseReference.push().setValue(myreferals);
-                         databaseReference2 = firebaseDatabase.getReference("Refferrals_General");
-                         Refferrals myreferals_general = new Refferrals(mrefereename,mrefereephone,mrefstdname,
-                                 mrefgenderselect, mrefphoneno2, mrefemail, mrefgrade,mrefcourse, mrefintake, mreflevels,myDate);
-                         databaseReference2.push().setValue(myreferals_general);
+                 if (haveNetwork())
+                 {
+                         //now connect to the database
+                     mFirebaseAuth= FirebaseAuth.getInstance();
+                     databaseReference = firebaseDatabase.getReference("Refferrals").child(mFirebaseAuth.getUid());
+                     Refferrals myreferals = new Refferrals(mrefereename,mrefereephone ,mrefstdname,
+                             mrefgenderselect, mrefphoneno2, mrefparentno, mrefgrade,mrefcourse, mrefintake, mreflevels,myDate);
+                     databaseReference.push().setValue(myreferals);
+                     databaseReference2 = firebaseDatabase.getReference("Refferrals_General");
+                     Refferrals myreferals_general = new Refferrals(mrefereename,mrefereephone,mrefstdname,
+                             mrefgenderselect, mrefphoneno2, mrefparentno, mrefgrade,mrefcourse, mrefintake, mreflevels,myDate);
+                     databaseReference2.push().setValue(myreferals_general);
 
-                             refstdname.setText("");
-                             refgenderselect.setSelection(0);
-                             refphoneno1.setText("");
-                             refphoneno2.setText("");
-                             refemail.setText("");
-                             refgrade.setSelection(0);
-                              refcoursesSpinner.setSelection(0);
-                             refintake.setSelection(0);
-                             reflevels.setSelection(0);
-                             Toast.makeText(getActivity(), "Congratulations! \n You have added a student Successfully!", Toast.LENGTH_SHORT).show();
-                     }
+                         refstdname.setText("");
+                         refgenderselect.setSelection(0);
+                         refphoneno1.setText("");
+                         refphoneno2.setText("");
+                         refparentno.setText("");
+                         refgrade.setSelection(0);
+                          refcoursesSpinner.setSelection(0);
+                         refintake.setSelection(0);
+                         reflevels.setSelection(0);
+                         Toast.makeText(getActivity(), "Congratulations! \n You have added a student Successfully!", Toast.LENGTH_SHORT).show();
+                 }
                      else if (!haveNetwork())
                      {
                          Toast.makeText(getActivity(), "Check your internet connection!", Toast.LENGTH_SHORT).show();

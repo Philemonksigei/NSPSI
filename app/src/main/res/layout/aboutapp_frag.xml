@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".frag">
+    tools:context=".aboutapp_grag">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -25,9 +25,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FF9800"
+                android:background="#FFC107"
                 android:text="@string/h1"
-                android:textAllCaps="false"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -49,9 +48,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FF9800"
+                android:background="#FFC107"
                 android:text="@string/h2"
-                android:textAllCaps="true"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -70,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FF9800"
+                android:background="#FFC107"
                 android:text="@string/h3"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
@@ -90,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FF9800"
+                android:background="#FFC107"
                 android:text="@string/h4"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="16sp"
@@ -110,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FF9800"
+                android:background="#FFC107"
                 android:text="@string/h5"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="16sp"
@@ -131,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FF9800"
+                android:background="#FFC107"
                 android:text="@string/h6"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textStyle="bold" />
@@ -150,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FF9800"
+                android:background="#FFC107"
                 android:text="@string/h7"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="16sp"
@@ -170,7 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FF9800"
+                android:background="#FFC107"
                 android:text="@string/h8"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="16sp"
@@ -190,11 +188,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#FF9800"
+                android:background="#FFC107"
                 android:text="@string/reachus"
                 android:textAlignment="viewStart"
                 android:textColor="@color/design_default_color_primary"
-                android:textSize="12sp"
                 android:textStyle="bold" />
 
 
