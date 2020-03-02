@@ -252,6 +252,9 @@ public class registryFrag extends Fragment
          else   if(!(mrefphoneno1.equals(mrefphoneno2))){
              Toast.makeText(getActivity(), "Phone numbers do not match!", Toast.LENGTH_SHORT).show();
          }
+         else   if((mrefparentno.equals(mrefphoneno2))){
+             Toast.makeText(getActivity(), "Parent No CANNOT be same as Students!", Toast.LENGTH_SHORT).show();
+         }
          else   if(mrefparentno.isEmpty()||mrefparentno.startsWith(" ")){
              refparentno.setError("Email nummber cannot be Empty!");
          }
@@ -271,7 +274,7 @@ public class registryFrag extends Fragment
                  {
                          //now connect to the database
                      mFirebaseAuth= FirebaseAuth.getInstance();
-                     databaseReference = firebaseDatabase.getReference("referralsData").child(mFirebaseAuth.getUid());
+                     databaseReference = firebaseDatabase.getReference("Refferrals").child(mFirebaseAuth.getUid());
                      referralsData myreferals = new referralsData(mrefereename,mrefereephone ,mrefstdname,
                              mrefgenderselect, mrefphoneno2, mrefparentno, mrefgrade,mrefcourse, mrefintake, mreflevels,myDate);
                      databaseReference.push().setValue(myreferals);
@@ -319,7 +322,6 @@ public class registryFrag extends Fragment
                  if(info.isConnected())
                      have_Mobiledata = true;
              }
-
          }
          return  have_Mobiledata || have_WIFI;
      }

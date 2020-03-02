@@ -75,7 +75,6 @@ public class adduserActivity extends AppCompatActivity {
         stdpassword2 = findViewById(R.id.pwd2);
         stdsignuphere = findViewById(R.id.stdsignup);
 
-
         String [] users = {"-Usertype-","Student","Staff","Guest",};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getApplicationContext(), android.R.layout.simple_spinner_item, users);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -87,8 +86,6 @@ public class adduserActivity extends AppCompatActivity {
                 public void onClick(View v)
                 {
                     signingUp();
-                    pbsignup.setVisibility(View.VISIBLE);
-                    //authentication();
 
                 }
             });
@@ -112,20 +109,17 @@ public class adduserActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Sorry!! \n Please select correct USERTYPE!", Toast.LENGTH_SHORT).show();
         }
-
-        else if(mstdname.isEmpty()|| mstdadmno.isEmpty() || mstdphoneno1.isEmpty()|| mstdphoneno2.isEmpty()|| mstemail.isEmpty())
+        else if(mstdname.startsWith(" ")||mstdadmno.startsWith(" ")||mstdname.isEmpty()|| mstdadmno.isEmpty() || mstdphoneno1.isEmpty()|| mstdphoneno2.isEmpty()|| mstemail.isEmpty())
         {
             Toast.makeText(this, " Check Empty Fields!!\n Fill them first.", Toast.LENGTH_SHORT).show();
-
         }
-        if(mstdphoneno1.length()< 10 || mstdphoneno2.length()< 10)
+        else if(mstdphoneno1.length() !=10 ||mstdphoneno1.startsWith(" ")|| mstdphoneno2.length() != 10 || mstdphoneno2.startsWith(" "))
         {
             stdphoneno1.setError("Invalid Phone Number!");
             stdphoneno1.requestFocus();
             stdphoneno2.setError("Invalid Phone Number!");
             stdphoneno2.requestFocus();
         }
-
         else   if(!(mstdphoneno1.equals(mstdphoneno2))){
             Toast.makeText(getApplicationContext(), "Phone numbers do not match!", Toast.LENGTH_SHORT).show();
         }
@@ -134,21 +128,29 @@ public class adduserActivity extends AppCompatActivity {
             stdemail.setError("Invalid Email Address!");
             stdemail.requestFocus();
         }
-        else if(mstdpwd1.isEmpty())
+        else if(mstdpwd1.isEmpty()||mstdpwd1.startsWith(" "))
         {
             stdpassword1 .setError("Please fill in your password!");
             stdpassword1 .requestFocus();
         }
-        else if(mstdpwd1.length()<7)
+        else if(mstdpwd1.length()<9)
         {
             stdpassword1 .setError("Password too Short! \n" +
-                    "Use at leat 7 Characters");
+                    "Use at least 9 Characters");
             stdpassword1 .requestFocus();
         }
-        else if(mstdpwd2.isEmpty())
+        else if(mstdpwd1.length()>11)
+        {
+            stdpassword1 .setError("Password too long! \n" +
+                    "Use at most 11 Characters");
+            stdpassword1 .requestFocus();
+        }
+
+        else if(mstdpwd2.isEmpty()||mstdpwd2.startsWith(" "))
         {
             stdpassword2 .setError("Please fill in your password!");
             stdpassword2 .requestFocus();
+            stdpassword1.setText("");
         }
         else if (!mstdpwd1.equals(mstdpwd2)){
             stdpassword1 .setError("Passwords do not match!");
@@ -159,6 +161,9 @@ public class adduserActivity extends AppCompatActivity {
         else  {
                 if (haveNetwork())
                 {
+                    pbsignup.setVisibility(View.VISIBLE);
+                    stdsignuphere.setVisibility(View.GONE);
+
                     mFirebaseAuth.createUserWithEmailAndPassword(mstemail, mstdpwd1)
                     .addOnCompleteListener(adduserActivity.this, new OnCompleteListener<AuthResult>()
                     {
@@ -166,7 +171,6 @@ public class adduserActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful())
                             {
-
                                 if( muser.equals("Student"))
                                 {
                                     mFirebaseAuth.getUid();
@@ -184,9 +188,6 @@ public class adduserActivity extends AppCompatActivity {
                                     databaseReference = firebaseDatabase.getReference("Users").child(mFirebaseAuth.getUid());
 
                                 }
-
-                              // String id = databaseReference.push().getKey();
-
                                 registryData.Student_staff student_staff= new registryData.Student_staff(muser,mstdadmno, mstdname, mstdphoneno1, mstemail);
                                 //send to database
                                 databaseReference.setValue(student_staff);
@@ -195,9 +196,7 @@ public class adduserActivity extends AppCompatActivity {
                                 databaseReference.setValue(student_staff);
                                 databaseReference.setValue(student_staff);
 
-
-
-                                Toast.makeText(adduserActivity.this, "SUCCESSSSSS!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(adduserActivity.this, "Registration Successful!\nPlease Login.", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(getApplicationContext(), loginActivity.class);
                                 startActivity(i);
                                 finish();
@@ -210,7 +209,7 @@ public class adduserActivity extends AppCompatActivity {
                 }
                     else if (!haveNetwork())
                     {
-                        Toast.makeText(this, "No Network!! Sorry!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "No Internet Connection!", Toast.LENGTH_SHORT).show();
                     }
             }
     }
