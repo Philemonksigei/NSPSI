@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class adduserActivity extends AppCompatActivity {
     EditText stdpassword2;
     FirebaseAuth mFirebaseAuth;
     Button stdsignuphere;
+    ProgressBar pbsignup;
 
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference;
@@ -58,6 +60,8 @@ public class adduserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adduser);
 
+        pbsignup= findViewById(R.id.progressBarsignup);
+        pbsignup.setVisibility(View.GONE);
         usertype = findViewById(R.id.spinnerusers);
         stdadmno_staffno = findViewById(R.id.admnoid);
         stdname = findViewById(R.id.nameid);
@@ -71,6 +75,7 @@ public class adduserActivity extends AppCompatActivity {
         stdpassword2 = findViewById(R.id.pwd2);
         stdsignuphere = findViewById(R.id.stdsignup);
 
+
         String [] users = {"-Usertype-","Student","Staff","Guest",};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getApplicationContext(), android.R.layout.simple_spinner_item, users);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -82,6 +87,7 @@ public class adduserActivity extends AppCompatActivity {
                 public void onClick(View v)
                 {
                     signingUp();
+                    pbsignup.setVisibility(View.VISIBLE);
                     //authentication();
 
                 }
@@ -188,6 +194,7 @@ public class adduserActivity extends AppCompatActivity {
                                 databaseReference.setValue(student_staff);
                                 databaseReference.setValue(student_staff);
                                 databaseReference.setValue(student_staff);
+
 
 
                                 Toast.makeText(adduserActivity.this, "SUCCESSSSSS!", Toast.LENGTH_SHORT).show();
