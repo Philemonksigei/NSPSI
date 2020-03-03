@@ -18,19 +18,12 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-//import com.google.android.gms.tasks.OnCompleteListener;
-//import com.google.android.gms.tasks.Task;
-//import com.google.firebase.auth.AuthResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
 
 public class adduserActivity extends AppCompatActivity {
 
@@ -93,14 +86,11 @@ public class adduserActivity extends AppCompatActivity {
 
     public void signingUp()
     {
-       // final long[] registryno = {0};
         final String muser = usertype.getSelectedItem().toString();
         final String mstdadmno = stdadmno_staffno.getText().toString();
         final String mstdname = stdname.getText().toString();
-
         final String mstdphoneno1 =stdphoneno1.getText().toString();
         final String mstdphoneno2 =stdphoneno2.getText().toString();
-
         final String mstemail = stdemail.getText().toString();
         String mstdpwd1 = stdpassword1.getText().toString().trim();
         String mstdpwd2 = stdpassword2.getText().toString().trim();

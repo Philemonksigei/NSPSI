@@ -226,4 +226,5 @@ Powered by: \nAfixus Solutions Ltd.\nwww.afixus.co.ke \n afixus.it@gmail.com
     <string name="suggestion_box">Suggestion Box</string>
     <string name="refer_a_student">Refer a Student</string>
     <string name="share_this_app">Share this App</string>
+    <string name="check_my_list">Check my List</string>
 </resources>

@@ -49,9 +49,14 @@ public class suggestion_boxFrag extends Fragment {
                 dateOfPost = DateFormat.getDateTimeInstance().format(new Date());
                 mFirebaseAuth = FirebaseAuth.getInstance();
                 if (suggestionMessage.startsWith(" ") || suggestionMessage.isEmpty()) {
-                    Toast.makeText(getActivity(), "Please key in your Suggesion", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Please key in your Suggestion", Toast.LENGTH_SHORT).show();
                     suggestionTxt.setText("");
                        }
+                        else if(suggestionMessage.length()> 100)
+                                    {
+                                     Toast.makeText(getActivity(), "Message too long!", Toast.LENGTH_SHORT).show();
+
+                                    }
                 else {
 
 /*
@@ -77,13 +82,11 @@ public class suggestion_boxFrag extends Fragment {
                     }
 
 */
-
-
-
                         databaseReference = firebaseDatabase.getReference("Suggestions").child(mFirebaseAuth.getUid());
                         suggestionsData suggestions = new suggestionsData(suggestionMessage, dateOfPost);
                         databaseReference.push().setValue(suggestions);
 
+                        //TODO Check if process is successful first
                         //if it is successful, show toast of success
                         Toast.makeText(getActivity(), "Recieved\nThanks for your message!", Toast.LENGTH_SHORT).show();
 

@@ -53,10 +53,6 @@ public class loginActivity extends AppCompatActivity {
             public void onClick(View v)
             {
 
-                //just for testing purpose
-               // Intent intent = new Intent(getApplicationContext(), homeActivity.class);
-              //  startActivity(intent);
-                //
 
                 String mstemail = mEmail.getText().toString().trim();
                 String mstdpwd1 = mPassword.getText().toString().trim();
@@ -84,10 +80,11 @@ public class loginActivity extends AppCompatActivity {
 
                 else if (!(mstemail.isEmpty()&& mstdpwd1.isEmpty()) )
                 {
-                    pb.setVisibility(View.VISIBLE);
-
                     if(haveNetwork())
                     {
+                        login_button.setVisibility(View.INVISIBLE);
+                        pb.setVisibility(View.VISIBLE);
+
                         mFirebaseAuth = FirebaseAuth.getInstance();
                         mFirebaseAuth.signInWithEmailAndPassword(mstemail, mstdpwd1)
                                 .addOnCompleteListener(loginActivity.this, new OnCompleteListener<AuthResult>()
@@ -108,6 +105,7 @@ public class loginActivity extends AppCompatActivity {
                                         }
                                         else
                                         {
+                                            login_button.setVisibility(View.VISIBLE);
                                            pb.setVisibility(View.GONE);
                                             Toast.makeText(loginActivity.this, "Error!! \n Check  Email and Password", Toast.LENGTH_SHORT).show();
 
